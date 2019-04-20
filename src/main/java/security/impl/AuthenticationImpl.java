@@ -8,6 +8,9 @@ import service.IRoleService;
 import service.IUserService;
 import service.impl.RoleService;
 import service.impl.UserService;
+import utils.SessionUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class AuthenticationImpl implements Authentication {
     private String userName;
@@ -25,9 +28,10 @@ public class AuthenticationImpl implements Authentication {
 
 
     @Override
-    public String urlRedirect() {
+    public String urlRedirect(HttpServletRequest request) {
         User user = userService.findUserByUserNameAndPassword(new Auth(userName,password));
         if (user!=null){
+            SessionUtil.getSessionUtilInstance().putValue(request,"MODEL",user);
             Role role= roleService.findRoleById(user.getRoleId());
             if (role.getRoleName().equals("ADMIN")){
                return "/admin";
@@ -36,7 +40,7 @@ public class AuthenticationImpl implements Authentication {
             }
         }else{
 
-            return "/login?message=userNameOrPasswordInvalist";
+            return "/login?message=userNameOrPasswordInvalid";
         }
         return null;
     }

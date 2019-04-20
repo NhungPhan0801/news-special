@@ -12,9 +12,10 @@ public class News {
     private String modifiedBy;
     private Timestamp modifiedDate;
     private String censor;
-    private String thumnail;
+    private String thumbnail;
     private String status;
-    private Long categoryId;
+    private Long categoryID;
+
 
     public Long getId() {
         return id;
@@ -80,12 +81,12 @@ public class News {
         this.censor = censor;
     }
 
-    public String getThumnail() {
-        return thumnail;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setThumnail(String thumnail) {
-        this.thumnail = thumnail;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getStatus() {
@@ -104,12 +105,12 @@ public class News {
         this.modifiedDate = modifiedDate;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
     @Override
@@ -124,9 +125,9 @@ public class News {
                 ", modifiedBy='" + modifiedBy + '\'' +
                 ", modifiedDate=" + modifiedDate +
                 ", censor='" + censor + '\'' +
-                ", thumnail='" + thumnail + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", status='" + status + '\'' +
-                ", categoryId=" + categoryId +
+                ", categoryID=" + categoryID +
                 '}';
     }
 }

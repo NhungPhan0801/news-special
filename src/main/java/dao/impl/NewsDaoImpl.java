@@ -1,38 +1,35 @@
 package dao.impl;
 
-import dao.GenericDAO;
-import dao.NewsDAO;
+import dao.INewsDAO;
 import mapper.NewsMapper;
 import model.News;
 
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class NewsDaoImpl extends AbtractDao<News> implements NewsDAO {
+public class NewsDaoImpl extends AbtractDao<News> implements INewsDAO {
 
-    public void inserNews(News news) {
+    public void insertNews(News news) {
         String sql = "INSERT INTO news(title, shortDescription, content, createdBy, " +
-                "createdDate, thumnail," +
-                " status, categoryID) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                "createdDate, thumbnail," +
+                " status, categoryID) VALUES (?,?,?,?,?,?,?,?)";
         insert(
                 sql, news.getTitle(), news.getShortDescription(), news.getContent(),
                 news.getCreatedBy(), news.getCreatedDate(),
-                news.getThumnail(), news.getStatus(),
-                news.getCategoryId());
+                news.getThumbnail(), news.getStatus(),
+                news.getCategoryID());
     }
 
     public void updateNews(Long id,News news) {
         String sql="UPDATE news SET title=?,shortDescription=?,content=?,\n" +
                 "                createdBy=?,createdDate=?,modifiedBy=?,\n" +
-                "                censor=?,thumnail=?,categoryID=?,\n" +
+                "                censor=?,thumbnail=?,categoryID=?,\n" +
                 "                modifiedDate=? WHERE id=?";
         update(
                 sql,news.getTitle(), news.getShortDescription(), news.getContent(),
                 news.getCreatedBy(), news.getCreatedDate(), news.getModifiedBy(),
-                news.getCensor(), news.getThumnail(),
-                news.getCategoryId(), news.getModifiedDate(),news.getId());
+                news.getCensor(), news.getThumbnail(),
+                news.getCategoryID(), news.getModifiedDate(),news.getId());
 
     }
 
@@ -41,7 +38,7 @@ public class NewsDaoImpl extends AbtractDao<News> implements NewsDAO {
         return query(sql, new NewsMapper());
     }
 
-    public News findbyId(Long id) {
+    public News findById(Long id) {
         String sql="Select* from news where id=?";
         List<News> list= new ArrayList<News>();
         list= query(sql,new NewsMapper(),id);
@@ -55,8 +52,8 @@ public class NewsDaoImpl extends AbtractDao<News> implements NewsDAO {
     }
 
     public static void main(String[] args) {
-        NewsDAO newsDao = new NewsDaoImpl();
-//        List<News> newsList= newsDao.findAll();
+        INewsDAO INewsDao = new NewsDaoImpl();
+//        List<News> newsList= INewsDao.findAll();
 //        for (News news:newsList) {
 //            System.out.println(news);
 //        }
@@ -72,15 +69,15 @@ public class NewsDaoImpl extends AbtractDao<News> implements NewsDAO {
         news.setShortDescription("nhungxinhgai");
         news.setContent("aaa");
         news.setCensor("nana");
-        news.setThumnail("haha");
+        news.setThumbnail("haha");
         news.setStatus("aabb");
         news.setCreatedBy("ccdd");
         news.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        news.setCategoryId(1L);
+        news.setCategoryID(1L);
         news.setModifiedBy("xxxxx");
         news.setModifiedDate(new Timestamp(System.currentTimeMillis()));
-//        newsDao.inserNews(news);
-        newsDao.updateNews(4L,news);
+//        INewsDao.inserNews(news);
+        INewsDao.updateNews(4L,news);
 
 */
     }

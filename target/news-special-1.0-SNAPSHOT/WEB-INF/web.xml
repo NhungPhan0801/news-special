@@ -14,8 +14,18 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>filterPath</filter-name>
+        <filter-class>filter.AuthorticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterPath</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>
 

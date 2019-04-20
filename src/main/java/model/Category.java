@@ -4,7 +4,7 @@ public class Category {
     private Long categoryId;
     private String  categoryName;
 
-    public Long getCategoryId() {
+    public Long getCategoryId(long id) {
         return categoryId;
     }
 
@@ -12,7 +12,7 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getCategoryName() {
+    public String getCategoryName(String name) {
         return categoryName;
     }
 
